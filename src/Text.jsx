@@ -20,7 +20,7 @@ function Text() {
     };
 
     // Make the API call using fetch or any other suitable method
-    fetch("http://localhost:3000/todos", {
+    fetch(import.meta.env.VITE_URL + "/todos", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

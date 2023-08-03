@@ -4,19 +4,19 @@ function useTodos() {
   const [todos, setTodos] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/todos").then((response) => {
+    fetch(import.meta.env.VITE_URL + "/todos").then((response) => {
       response.json().then((data) => {
         setTodos(data);
       });
     });
 
     setInterval(() => {
-      fetch("http://localhost:3000/todos").then((response) => {
+      fetch(import.meta.env.VITE_URL + "/todos").then((response) => {
         response.json().then((data) => {
           setTodos(data);
         });
       });
-    }, 10000);
+    }, 3600000);
   }, []);
 
   return todos;
@@ -28,7 +28,7 @@ function App() {
   const handleDelete = (id) => {
     // You need to implement the logic to delete the todo with the given id.
     // For this example, let's assume you have an API endpoint to delete a todo:
-    fetch(`http://localhost:3000/todos/${id}`, { method: "DELETE" })
+    fetch(import.meta.env.VITE_URL + "/todos/" + `${id}`, { method: "DELETE" })
       .then((response) => response.json())
       .catch((error) => {
         console.error("Error deleting todo:", error);
